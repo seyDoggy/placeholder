@@ -12,7 +12,7 @@ You can use your own images or any freely available creative commons images. Use
 
 ### Why did I make PlaceHolder? ###
 
-I am a [theme developer][] by day and make a [lot][Sytten] [of][tre3rty] [demo][Copper] [sites][Nuvem]. I am forever moving and changing images to keep things fresh but not without inevitably breaking or losing an image or two along the way. I wanted an image placeholder solution that would let my update or remove images without worrying about naming scheme, file type or having to update countless demo sites. I also want a variety of styles and sizes in my demo sites without the need for duplicate images for each style and size. PlaceHolder takes care of all my style and sizing needs and I don't have to worry about naming conventions, saving for web, image type or getting any broken image links anymore.
+I am a [theme developer][] by day and make a [lot][Sytten] [of][tre3rty] [demo][Copper] [sites][Nuvem]. I am forever moving and changing images to keep things fresh but not without inevitably breaking or losing an image or two along the way. I wanted an image placeholder solution that would let my update or remove images without worrying about naming scheme, file type or having to update countless demo sites. I also want a variety of styles and sizes in my demo sites without the need for duplicate images for each style and size. PlaceHolder takes care of all my style and sizing needs and I don't have to worry about naming conventions, saving for web, image type or getting any broken image links.
 
 ### Why Server-side? ###
 
@@ -48,7 +48,7 @@ Why reinvent the wheel? I didn't set out to make any of this in the first place.
 
 NOTE: the .htaccess and index.php contain just enough to get you going and the folder names, paths and namespaces are arbitrary. Consider them examples of what you need at a minimum but are by no means set in stone. Change the paths and namespaces to suit your current setup. If you are pretty new at all this, consider getting PlaceHolder running all on its own in a dedicated sub-domain before trying to run it in a folder on your main domain.
 
-NOTE^2: the namespace for both my fork of SimpleImage and PlaceHolder are set to 'seydoggy' in keeping with the php-fig PSR-0 standard of `\<Vendor Name>\(<Namespace>\)*<Class Name>`. If you have an class heirarchy that suits you better then have at it.
+NOTE^2: the namespace for both my fork of SimpleImage and PlaceHolder are set to 'seydoggy' in keeping with the php-fig PSR-0 standard of `\<Vendor Name>\(<Namespace>\)*<Class Name>`. If you have a class heirarchy that suits you better then have at it.
 
 <hr id="Usage">
 
@@ -56,7 +56,7 @@ NOTE^2: the namespace for both my fork of SimpleImage and PlaceHolder are set to
 
 ### Basics ###
 
-Make a request of your new PlaceHolder engine with a minimum or 2 parameters — width then height — separated by a dash. Like this, `http://image.domain.url/600-400`.
+Make a request of your new PlaceHolder engine with a minimum of 2 parameters — width then height — separated by a dash. Like this, `http://image.domain.url/600-400`.
 
 In an HTML img tag it'd look like this:
 
@@ -80,7 +80,7 @@ There is also an optional third parameter which will perform a few modifications
 
         <img src="http://image.domain.url/600-400-sepia" alt="some random image">
 
-* `sketch` will render the random image in with sharpness turned up to give sketched effect (meh):
+* `sketch` will render the random image in with sharpness turned up to give a sketched effect (meh):
 
         <img src="http://image.domain.url/600-400-sketch" alt="some random image">
 
@@ -94,7 +94,7 @@ There is also an optional third parameter which will perform a few modifications
 
 ### Avoiding Duplicates ###
 
-Chances are you are going to have multiple requests of the same size image on the the same page. If the request is identical then the image be identical too. The easy way around this to make each request unique, either with a third or even a fourth parameter. The third parameter can be any one of the supported keywords or it can be any made up identifier. And if you do use a supported keyword, then simply use a pseudo forth parameter with any made up identifier.
+Chances are you are going to have multiple requests of the same size image on the the same page. If the request is identical then the image will be identical too. The easy way around this to make each request unique, either with a third or even a fourth parameter. The third parameter can be any one of the supported keywords or it can be any made up identifier. And if you do use a supported keyword, then simply use a pseudo forth parameter with any made up identifier.
 
 The following examples will all render unique images, all with the same 200px X 100px dimension:
 
