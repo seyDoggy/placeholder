@@ -24,7 +24,7 @@
  * @see        SimpleImage, SimpleImage\SimpleImage()
  */
 
-namespace SimpleImage\PlaceHolder;
+namespace seydoggy;
 
 /**
  * Generates random placeholder image
