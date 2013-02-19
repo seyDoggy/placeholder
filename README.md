@@ -1,6 +1,6 @@
 # The Random Image PlaceHolder #
 **AUTHOR: [Adam Merrifield][theme developer]**   
-**VERSION: [1.0.0][PlaceHolder]**
+**VERSION: [1.0.1][PlaceHolder]**
 
 [Skip to installation][]
 
@@ -132,6 +132,11 @@ Similarly the following CSS examples will all render unique images, all with the
 ## See It In Action ##
 
 I've made a special page for PlaceHolder so you can see it in action. Every image on the page (including the slider at the top) is generated with PlaceHolder. Under each example is the code used to request each image. Go [check it out][examples]!
+
+<hr id="Changelog">
+
+## Changelog ##
+**1.0.1:** Added simple caching to reduce server load.
 
 <hr id="Contribute">
 

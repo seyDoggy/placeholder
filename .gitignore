@@ -45,3 +45,4 @@ Thumbs.db
 ################
 git.log.format
 .tm_properties
+*.cache

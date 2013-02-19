@@ -21,7 +21,7 @@
  * @version    2.0.0
  * @since      2.0.0
  * @link       https://github.com/seyDoggy/SimpleImage
- * @see        SimpleImage, SimpleImage\SimpleImage()
+ * @see        SimpleImage, seydoggy\SimpleImage()
  */
 
 namespace seydoggy;
@@ -37,12 +37,12 @@ namespace seydoggy;
  * @author     Adam Merrifield <macagp@gmail.com>
  * @copyright  Adam Merrifield
  * @license    Dual http://opensource.org/licenses/MIT MIT and  http://www.gnu.org/licenses/gpl-2.0.html GPLv2
- * @version    1.0.0
+ * @version    1.0.1
  * @link       https://github.com/seyDoggy/Simple_Image_PlaceHolder
- * @see        SimpleImage, SimpleImage\SimpleImage()
+ * @see        SimpleImage, seydoggy\SimpleImage()
  * @since      Class available since Release 1.0.0
  */
-class PlaceHolder extends \SimpleImage\SimpleImage
+class PlaceHolder extends \seydoggy\SimpleImage
 {
 	/**
 	 * Holds the value of the path argument passed to of constructor.
@@ -99,6 +99,22 @@ class PlaceHolder extends \SimpleImage\SimpleImage
 	private $images;
 
 	/**
+	 * The file to store array of images found in the directory
+	 * @see imageCache(), randomImage(), $imageFolder
+	 * @access private
+	 * @var mixed
+	 */
+	private $cacheFile;
+
+	/**
+	 * The number of hours to cache the image folder for
+	 * @see imageCache(), randomImage()
+	 * @access private
+	 * @var mixed
+	 */
+	private $cacheHours = 24;
+
+	/**
 	 * temporary variable for a random array value
 	 * @see getRandomImage(), $images
 	 * @access private
@@ -141,11 +157,7 @@ class PlaceHolder extends \SimpleImage\SimpleImage
 		
 		$this->imageFolder = $path;
 
-		if (is_dir($this->imageFolder)) {
-
-			$this->folderHandler = opendir($this->imageFolder);
-
-		} else {
+		if (!is_dir($this->imageFolder) || !is_writable($this->imageFolder)) {
 
 			die($this->showMessage('path'));
 
@@ -209,28 +221,39 @@ class PlaceHolder extends \SimpleImage\SimpleImage
 	private function getRandomImage() 
 	{
 		/**
-		 * open directory and read the filenames
+		 * check to see if the cache file exists
 		 */
-		while ($file = readdir($this->folderHandler)) {
+		$this->cacheFile = $this->imageFolder.'/_images.cache';
+
+		if (file_exists($this->cacheFile)) {
+			$stats = stat($this->cacheFile);
 
 			/**
-			 * if file isn't this directory or its parent, add it to the images
+			 * compare cache file mod time with current time
 			 */
-			if ($file != "." && $file != "..") {
+			if ($stats[9] > (time() - ((60 * 60) * $this->cacheHours))) {
+				
 				/**
-				 * checks for gif, jpg, png
+				 * get json data from cache file
 				 */
-	            if ( preg_match("/(\.gif|\.jpg|\.jpeg|\.png)$/", $file) ) {
-	                $this->images[] = $file;
-	            }
+				$jsondata = file_get_contents($this->cacheFile);
+				
+				/**
+				 * make images array from json data
+				 */
+				$this->images = json_decode($jsondata, true);
+
+			} else {
+
+				$this->imageCache();
+
 			}
 
-		}
+		} else {
+			
+			$this->imageCache();
 
-		/**
-		 * close the handler
-		 */
-		closedir($this->folderHandler);
+		}
 
 		/**
 		 * pick a random array item number
@@ -246,6 +269,48 @@ class PlaceHolder extends \SimpleImage\SimpleImage
 	}
 
 	/**
+	 * Sets an image array and caches the results from the image folder
+	 * @return array the images found in the image folder
+	 * @access private
+	 */
+	private function imageCache()
+	{
+		/**
+		 * open directory and read the filenames
+		 */
+		$this->folderHandler = opendir($this->imageFolder);
+
+		while (false !== ($file = readdir($this->folderHandler))) {
+
+			/**
+			 * if file isn't this directory or its parent, add it to the images
+			 */
+			if ($file != "." && $file != "..") {
+				/**
+				 * checks for gif, jpg, png
+				 */
+	            if ( preg_match("/(\.gif|\.jpg|\.jpeg|\.png)$/", $file) ) {
+	                $this->images[] = $file;
+	            }
+
+			}
+
+		}
+		
+		/**
+		 * write the cache file
+		 */
+   		file_put_contents($this->cacheFile, json_encode($this->images));
+
+		/**
+		 * close the handler
+		 */
+		closedir($this->folderHandler);
+
+		return $this->images;
+	}
+
+	/**
 	 * Creates and outputs the manipulated image
 	 * @param string $width the width value parsed from the URI
 	 * @param string $height the height value parsed from the URI
@@ -257,7 +322,7 @@ class PlaceHolder extends \SimpleImage\SimpleImage
 	{
 		try {
 			/**
-			 * uses the load method from SimpleImage\SimpleImage()
+			 * uses the load method from seydoggy\SimpleImage()
 			 */
 			$this->load($this->getRandomImage());
 			
@@ -320,7 +385,7 @@ class PlaceHolder extends \SimpleImage\SimpleImage
 				}
 
 				/**
-				 * apply SimpleImage\SimpleImage() manipulations
+				 * apply seydoggy\SimpleImage() manipulations
 				 */
 				switch ($this->effect) {
 					case 'bw':
@@ -347,7 +412,7 @@ class PlaceHolder extends \SimpleImage\SimpleImage
 			}
 			
 			/**
-			 * output the final result using SimpleImage\SimpleImage() output method
+			 * output the final result using seydoggy\SimpleImage() output method
 			 */
 			$this->output();
 
@@ -382,9 +447,9 @@ class PlaceHolder extends \SimpleImage\SimpleImage
 	{
 		switch ($message) {
 			case 'path':
-				echo "Sorry Dave, I cannot find your images folder with the path:
+				echo "Sorry Dave, I cannot find or write to the images folder with the path:
 						<p>\"$this->imageFolder\".
-						<p>Please check your spelling and try again.";
+						<p>Please check your spelling and/or permissions and try again.";
 				break;
 			
 			case 'param':
