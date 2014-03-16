@@ -72,6 +72,10 @@ Or a CSS background would look like this:
 
 There is also an optional third parameter which will perform a few modifications to the generated image.
 
+* Introducing square image handling, example:
+
+        <img src="http://image.domain.url/400" alt="some random image">
+        
 * `bw` will render the random image in black and white:
 
         <img src="http://image.domain.url/600-400-bw" alt="some random image">
