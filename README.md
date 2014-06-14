@@ -1,6 +1,6 @@
 # The Random Image PlaceHolder #
 **AUTHOR: [Adam Merrifield][theme developer]**   
-**VERSION: [1.0.1][PlaceHolder]**
+**VERSION: [1.0.2][PlaceHolder]**
 
 [Skip to installation][]
 
