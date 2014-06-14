@@ -167,7 +167,7 @@ class PlaceHolder extends \seydoggy\SimpleImage
 
 			$this->parameters = explode('-',$_GET['parameter']);
 
-		    if (is_array($this->parameters) && count($this->parameters) > 1){
+		    if (is_array($this->parameters) && count($this->parameters) >= 1){
 				
 				if (is_numeric($this->parameters[0]) && is_numeric($this->parameters[1])) {
 
@@ -183,6 +183,18 @@ class PlaceHolder extends \seydoggy\SimpleImage
 
 					}
 
+			    } elseif (is_numeric($this->parameters[0])){
+			    	if ($this->parameters[0] >= 16) {
+						
+						$this->width = $this->parameters[0];
+
+						$this->height = $this->parameters[0];
+
+					} else {
+
+						die($this->showMessage('min'));
+
+					}
 			    } else {
 
 			    	die($this->showMessage('nan'));
@@ -191,6 +203,8 @@ class PlaceHolder extends \seydoggy\SimpleImage
 
 			    if (count($this->parameters) > 2) {
 				    $this->effect = $this->parameters[2];
+			    } elseif (!is_numeric($this->parameters[1])) {
+			    	$this->effect = $this->parameters[1];
 			    }
 
 		    } else {
