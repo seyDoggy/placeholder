@@ -37,7 +37,7 @@ namespace seydoggy;
  * @author     Adam Merrifield <macagp@gmail.com>
  * @copyright  Adam Merrifield
  * @license    Dual http://opensource.org/licenses/MIT MIT and  http://www.gnu.org/licenses/gpl-2.0.html GPLv2
- * @version    1.0.1
+ * @version    1.0.2
  * @link       https://github.com/seyDoggy/Simple_Image_PlaceHolder
  * @see        SimpleImage, seydoggy\SimpleImage()
  * @since      Class available since Release 1.0.0
