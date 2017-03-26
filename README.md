@@ -1,31 +1,11 @@
 # The Random Image PlaceHolder
-**AUTHOR: [Adam Merrifield][https://adam.merrifield.ca]**   
-
-[Skip to installation][]
+**AUTHOR: [Adam Merrifield](https://adam.merrifield.ca)**   
 
 ## Overview
 
 The SimpleImage PlaceHolder class allows you to self host a random image placeholder engine to fill your in-development sites and mockups with real, random images instead of boring gray boxes. This class extends [SimpleImage](https://github.com/claviska/SimpleImage) by Cory LaViska and is intended as an aid for web developers generate temporary, random placeholder images.
 
 You can use your own images or any freely available creative commons images. Use as many as you like — obviously the more you use, the more random and varied the engine will be. It doesn't matter what size, aspect ratio or orientation you use, PlaceHolder will work out the best fit when generating the placeholder image.
-
-### Why did I make PlaceHolder?
-
-I used to be a web theme developer and made a lot demo sites. I was forever moving and changing images to keep things fresh but not without inevitably breaking or losing an image or two along the way. I wanted an image placeholder solution that would let me update or remove images without worrying about naming scheme, file type or having to update countless demo sites. I also want a variety of styles and sizes in my demo sites without the need for duplicate images for each variation. PlaceHolder takes care of all my style and sizing needs and I don't have to worry about naming conventions, saving for web, image type or getting any broken image links.
-
-### Why Server-side?
-
-Simply put, server-side is faster and more powerful and far more efficient. While some of the client-side JavaScript solutions, jQuery plugins included, might seem easier to add to a page on a one off basis, consider how their poor performance looks to your customer when they're trying to view your progress on their "big site".
-
-What you request is what you get. With PlaceHolder, when you request an image that is 370px x 130px, for instance, you are serving up an image that is 370px x 130px. Period. That's about 15KB worth of image and no unnecessary client-side overhead.
-
-The reality is, once you have your own random image server set up, you'll use it across all of your mockup work.
-
-### Why Extend SimpleImage?
-
-Why reinvent the wheel? I didn't set out to make any of this in the first place. I found SimpleImage while on my quest for a random image placeholder. While it wasn't the solution I needed, it did have a lot of great features I could use if I were to make my own placeholder engine... and here we are.
-
-<hr id="Requirements">
 
 ## Requirements
 
@@ -39,7 +19,7 @@ Why reinvent the wheel? I didn't set out to make any of this in the first place.
 Install with Composer:
 
 ```sh
-composer require claviska/simpleimage
+composer require seydoggy/placeholder
 ```
 
 <hr id="GettingStarted">
@@ -51,7 +31,7 @@ composer require claviska/simpleimage
 1. Use composer to install PlaceHolder:
 
     ```sh
-    composer require claviska/simpleimage
+    composer require seydoggy/placeholder
     ```
 
 NOTE: the .htaccess and index.php contain just enough to get you going and the folder names, paths and namespaces are arbitrary. Consider them examples of what you need at a minimum but are by no means set in stone. Change the paths and namespaces to suit your current setup. If you are pretty new at all this, consider getting PlaceHolder running all on its own in a dedicated sub-domain before trying to run it in a folder on your main domain.
