@@ -6,22 +6,7 @@
  * and generation, ideal for use in web work where placeholder images
  * are required.
  *
- * PHP version 5.3+
- *
- * LICENSE: This source file is subject to both MIT and GPLv2 licenses
- * that are available through the world-wide-web at the following URIs:
- * http://opensource.org/licenses/MIT.
- * http://www.gnu.org/licenses/gpl-2.0.html 
- *
- * @package    SimpleImage
- * @author     Cory LaViska
- * @author     Adam Merrifield <macagp@gmail.com>
- * @copyright  2013 Adam Merrifield
- * @license    Dual http://opensource.org/licenses/MIT MIT and  http://www.gnu.org/licenses/gpl-2.0.html GPLv2
- * @version    2.0.0
- * @since      2.0.0
- * @link       https://github.com/seyDoggy/SimpleImage
- * @see        SimpleImage, seydoggy\SimpleImage()
+ * Licensed under the MIT license <http://opensource.org/licenses/MIT>
  */
 
 namespace seydoggy;
@@ -42,7 +27,7 @@ namespace seydoggy;
  * @see        SimpleImage, seydoggy\SimpleImage()
  * @since      Class available since Release 1.0.0
  */
-class PlaceHolder extends \seydoggy\SimpleImage
+class PlaceHolder extends \claviska\SimpleImage
 {
 	/**
 	 * Holds the value of the path argument passed to of constructor.
@@ -50,7 +35,7 @@ class PlaceHolder extends \seydoggy\SimpleImage
 	 * @var string
 	 */
 	private $imageFolder;
-	
+
 	/**
 	 * Handler for opening the image folder
 	 * @see $imageFolder
@@ -58,7 +43,7 @@ class PlaceHolder extends \seydoggy\SimpleImage
 	 * @var mixed
 	 */
 	private $folderHandler;
-	
+
 	/**
 	 * Parameters passed in the URI
 	 * @access private
@@ -150,11 +135,11 @@ class PlaceHolder extends \seydoggy\SimpleImage
 	 * Constructs the PlaceHolder object
 	 * @param string $path the uri to the image folder
 	 * @return mixed the variables and functions declared for later use.
-	 * @throws showMessage() if $_GET['parameter'] is not set or parameters array is not set or adequate the constructor will exit. 
+	 * @throws showMessage() if $_GET['parameter'] is not set or parameters array is not set or adequate the constructor will exit.
 	 * @access public
 	 */
 	public function __construct($path = null) {
-		
+
 		$this->imageFolder = $path;
 
 		if (!is_dir($this->imageFolder) || !is_writable($this->imageFolder)) {
@@ -168,11 +153,11 @@ class PlaceHolder extends \seydoggy\SimpleImage
 			$this->parameters = explode('-',$_GET['parameter']);
 
 		    if (is_array($this->parameters) && count($this->parameters) >= 1){
-				
+
 				if (is_numeric($this->parameters[0]) && is_numeric($this->parameters[1])) {
 
 					if ($this->parameters[0] >= 16 && $this->parameters[1] >= 16) {
-						
+
 						$this->width = $this->parameters[0];
 
 						$this->height = $this->parameters[1];
@@ -185,7 +170,7 @@ class PlaceHolder extends \seydoggy\SimpleImage
 
 			    } elseif (is_numeric($this->parameters[0])){
 			    	if ($this->parameters[0] >= 16) {
-						
+
 						$this->width = $this->parameters[0];
 
 						$this->height = $this->parameters[0];
@@ -232,7 +217,7 @@ class PlaceHolder extends \seydoggy\SimpleImage
 	 * @return string the path to the image to be manipulated
 	 * @access private
 	 */
-	private function getRandomImage() 
+	private function getRandomImage()
 	{
 		/**
 		 * check to see if the cache file exists
@@ -246,12 +231,12 @@ class PlaceHolder extends \seydoggy\SimpleImage
 			 * compare cache file mod time with current time
 			 */
 			if ($stats[9] > (time() - ((60 * 60) * $this->cacheHours))) {
-				
+
 				/**
 				 * get json data from cache file
 				 */
 				$jsondata = file_get_contents($this->cacheFile);
-				
+
 				/**
 				 * make images array from json data
 				 */
@@ -264,7 +249,7 @@ class PlaceHolder extends \seydoggy\SimpleImage
 			}
 
 		} else {
-			
+
 			$this->imageCache();
 
 		}
@@ -310,7 +295,7 @@ class PlaceHolder extends \seydoggy\SimpleImage
 			}
 
 		}
-		
+
 		/**
 		 * write the cache file
 		 */
@@ -339,7 +324,7 @@ class PlaceHolder extends \seydoggy\SimpleImage
 			 * uses the load method from seydoggy\SimpleImage()
 			 */
 			$this->load($this->getRandomImage());
-			
+
 			/**
 			 * set some garbage variables for ratio comparisons
 			 */
@@ -381,7 +366,7 @@ class PlaceHolder extends \seydoggy\SimpleImage
 				 */
 				($this->get_height()+$height)/2
 			);
-			
+
 			/**
 			 * check for effects
 			 */
@@ -393,9 +378,9 @@ class PlaceHolder extends \seydoggy\SimpleImage
 				if ($this->effect == 'random') {
 
 					$this->num = array_rand($this->effects);
-					
+
 					$this->effect = $this->effects[$this->num];
-					
+
 				}
 
 				/**
@@ -417,21 +402,21 @@ class PlaceHolder extends \seydoggy\SimpleImage
 					case 'pixelate':
 						$this->pixelate(8);
 						break;
-					
+
 					default:
-						
+
 						break;
 				}
-				
+
 			}
-			
+
 			/**
 			 * output the final result using seydoggy\SimpleImage() output method
 			 */
 			$this->output();
 
 		} catch(Exception $e) {
-			
+
 			echo 'Error: ' . $e->getMessage();
 
 		}
@@ -465,10 +450,10 @@ class PlaceHolder extends \seydoggy\SimpleImage
 						<p>\"$this->imageFolder\".
 						<p>Please check your spelling and/or permissions and try again.";
 				break;
-			
+
 			case 'param':
 				echo "<p>Sorry Dave, I can't do that.";
-				
+
 				$this->showFormat();
 
 				break;
@@ -477,13 +462,13 @@ class PlaceHolder extends \seydoggy\SimpleImage
 				echo "<p>Sorry Dave, ";
 
 				if (!is_numeric($this->parameters[0]) && !is_numeric($this->parameters[1])) {
-					
+
 					echo "\"<em>" . $this->parameters[0] . "</em>\" and \"<em>" . $this->parameters[1] . "</em>\" are not numbers.";
-							
+
 				} else {
 
 					if (!is_numeric($this->parameters[0]) && is_numeric($this->parameters[1])) {
-					
+
 						echo "\"<em>" . $this->parameters[0] . "</em>\"";
 
 					} else {
@@ -497,7 +482,7 @@ class PlaceHolder extends \seydoggy\SimpleImage
 				}
 
 				echo "<p>I am unable to make an image that is \"" . $this->parameters[0] . "\" pixels wide and \"" . $this->parameters[1] . "\" pixels high. It does not compute.";
-				
+
 				$this->showFormat();
 
 				break;
@@ -506,11 +491,11 @@ class PlaceHolder extends \seydoggy\SimpleImage
 				echo "<p>Sorry Dave, ";
 
 				if ($this->parameters[0] < 16 && $this->parameters[1] < 16) {
-					
+
 					echo "\"<em>" . $this->parameters[0] . "</em>\" and \"<em>" . $this->parameters[1] . "</em>\" do";
-							
+
 				} else {
-					
+
 					if ($this->parameters[0] < 16 && !$this->parameters[1] < 16) {
 						echo "\"<em>" . $this->parameters[0] . "</em>\"";
 					} else {
@@ -518,11 +503,11 @@ class PlaceHolder extends \seydoggy\SimpleImage
 					}
 
 					echo " does";
-					
+
 				}
 
 				echo " not meet the minimum size requirement of 16.";
-					
+
 				$this->showFormat();
 
 				break;
