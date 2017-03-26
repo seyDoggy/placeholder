@@ -1,0 +1,20 @@
+{
+    "name": "seydoggy/placeholder",
+    "description": "A SimpleImage class extension for random placeholder image retrieval.",
+    "license": "MIT",
+    "require": {
+        "claviska/simpleimage": "3.3.*"
+    },
+    "authors": [
+        {
+            "name": "Adam Merrifield",
+            "homepage": "https://adam.merrifield.ca/",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "seydoggy": "src/"
+        }
+    }
+}
