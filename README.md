@@ -7,6 +7,8 @@ The SimpleImage PlaceHolder class allows you to self host a random image placeho
 
 You can use your own images or any freely available creative commons images. Use as many as you like — obviously the more you use, the more random and varied the engine will be. It doesn't matter what size, aspect ratio or orientation you use, PlaceHolder will work out the best fit when generating the placeholder image.
 
+<hr id="Requirements">
+
 ## Requirements
 
 * PHP 5.6+
