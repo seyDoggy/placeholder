@@ -144,7 +144,7 @@ Similarly the following CSS examples will all render unique images, all with the
 
 ## See It In Action ##
 
-I've made a special page for PlaceHolder so you can see it in action. Every image on the page (including the slider at the top) is generated with PlaceHolder. Under each example is the code used to request each image. Go [check it out][examples]!
+I've made a special page for PlaceHolder so you can see it in action. Every image on the page (including the slider at the top) is generated with PlaceHolder. Under each example is the code used to request each image. Download and run the sample site and [check it out][examples]!
 
 <hr id="Contribute">
 
@@ -153,4 +153,4 @@ I've made a special page for PlaceHolder so you can see it in action. Every imag
 I like to hack about in PHP but I am by no means an expert. I've tried to conform to what I understand as the best phpdoc, namespace and overall OOP practices but I understand there is likely to be huge room for improvement in my code. So please help me out, fork the code, submit pull requests, issue bug reports, whatever... if you use this code then share your thoughts.
 
 [Skip to installation]: #Installation
-[examples]: http://placeholder.seydoggy.com/examples/ "PlaceHolder examples"
+[examples]: https://github.com/seyDoggy/placeholder.seydoggy.com "PlaceHolder examples"
